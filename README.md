@@ -1,6 +1,7 @@
 JsonLines
 ================
-![PHP Version](http://img.shields.io/badge/php-5.6+-ff69b4.svg)
+[![Build Status](https://secure.travis-ci.org/raphaelstolt/json-lines.png)](http://travis-ci.org/raphaelstolt/json-lines)
+![PHP Version](http://img.shields.io/badge/php-5.5+-ff69b4.svg)
 
 This is a library to `enline` to the [JSON Lines](http://jsonlines.org/) format and to `deline` back from it to JSON.
 
