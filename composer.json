@@ -1,5 +1,5 @@
 {
-    "name": "rs/json-lines",
+    "name": "stolt/json-lines",
     "description": "Library for the JSON Lines text file format",
     "keywords": ["jsonlines", "json"],
     "license": "MIT",

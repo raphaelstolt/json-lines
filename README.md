@@ -7,7 +7,7 @@ This is a library to `enline` to the [JSON Lines](http://jsonlines.org/) format 
 
 #### Installation via Composer
 ``` bash
-$ composer require rs/json-lines
+$ composer require stolt/json-lines
 ```
 
 #### Usage
