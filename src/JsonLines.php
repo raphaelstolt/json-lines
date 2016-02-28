@@ -49,6 +49,8 @@ class JsonLines
     }
 
     /**
+     * Enlines a given data structure into JSON Lines.
+     *
      * @param  mixed $data Data to enline as JSON Lines
      * @return string
      * @throws NonTraversable
@@ -71,6 +73,8 @@ class JsonLines
     }
 
     /**
+     * Delines given JSON Lines into JSON.
+     *
      * @param  string $jsonLines JSON Lines to deline into JSON
      * @return string
      * @throws InvalidJson
