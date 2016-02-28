@@ -1,5 +1,9 @@
 # Changelog
 
+#### v0.0.4 `2016-02-28`
+- Changed JSON Lines separator.
+- Introduced guards for invalid JSON lines and non traversable data.
+
 #### v0.0.3 `2016-02-26`
 - Unified vendor name.
 
