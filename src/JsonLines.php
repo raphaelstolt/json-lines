@@ -4,6 +4,8 @@ namespace Rs\JsonLines;
 
 class JsonLines
 {
+    const LINE_SEPARATOR = "\r\n";
+
     /**
      * @param  mixed $data Data to enline as JSON Lines
      * @return string
@@ -20,7 +22,8 @@ class JsonLines
             $lines[] = $line;
         }
 
-        return implode(PHP_EOL, $lines) . PHP_EOL;
+        return implode(self::LINE_SEPARATOR, $lines)
+            . self::LINE_SEPARATOR;
     }
 
     /**
@@ -33,7 +36,7 @@ class JsonLines
             return json_encode([]);
         }
         $lines = [];
-        $jsonLines = explode(PHP_EOL, trim($jsonLines));
+        $jsonLines = explode(self::LINE_SEPARATOR, trim($jsonLines));
 
         foreach ($jsonLines as $line) {
             $lines[] = json_decode($line);
