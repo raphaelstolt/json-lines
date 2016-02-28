@@ -20,22 +20,27 @@ class JsonLinesTest extends PHPUnit
      */
     public function enline()
     {
-        $expectedLines = <<<JSON_LINES
-{"one":1,"two":2}
-{"three":3,"four":4,"five":5}
-{"six":6,"seven":7,"key":"value"}
-{"nested":["a","b","c"]}
-
-JSON_LINES;
+        $expectedLines = [
+            '{"one":1,"two":2}',
+            '{"three":3,"four":4,"five":5}',
+            '{"six":6,"seven":7,"key":"value"}',
+            '{"nested":["a","b","c"]}',
+            '{"newlined-content":"\ntest-content"}',
+        ];
+        $expectedLines = join(
+            JsonLines::LINE_SEPARATOR,
+            $expectedLines
+        ) . JsonLines::LINE_SEPARATOR;
 
         $lines = $this->jsonLines->enline([
             ["one" => 1, "two" => 2],
             ["three" => 3, "four" => 4, "five" => 5],
             ["six" => 6, "seven" => 7, "key" => "value"],
             ["nested" => ["a", "b", "c"]],
+            ["newlined-content" => "\ntest-content"]
         ]);
 
-        $this->assertEquals($expectedLines, $lines);
+        $this->assertSame($expectedLines, $lines);
     }
 
     /**
@@ -50,7 +55,7 @@ JSON_LINES;
             __DIR__ . '/fixtures/winning_hands.jsonl'
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             $enlinedJson,
             $this->jsonLines->enline(json_decode($fedJson, true))
         );
