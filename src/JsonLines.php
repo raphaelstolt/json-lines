@@ -7,7 +7,7 @@ use Rs\JsonLines\Exception\NonTraversable;
 
 class JsonLines
 {
-    const LINE_SEPARATOR = "\r\n";
+    const LINE_SEPARATOR = "\n";
 
     /**
      * Checks if the given data structure is traversable.
