@@ -15,6 +15,16 @@ class JsonLinesTest extends PHPUnit
     {
         $this->jsonLines = new JsonLines();
     }
+
+    /**
+     * @param  string $content
+     * @return string
+     */
+    private function replaceNewlines($content)
+    {
+        return preg_replace('~\R~', '\n', $content);
+    }
+
     /**
      * @test
      */
@@ -51,13 +61,16 @@ class JsonLinesTest extends PHPUnit
         $fedJson = file_get_contents(
             __DIR__ . '/fixtures/winning_hands.json'
         );
-        $enlinedJson = file_get_contents(
+        $expectedEnlinedJson = $this->replaceNewlines(file_get_contents(
             __DIR__ . '/fixtures/winning_hands.jsonl'
+        ));
+        $enlinedJson = $this->replaceNewlines(
+            $this->jsonLines->enline(json_decode($fedJson, true))
         );
 
         $this->assertSame(
-            $enlinedJson,
-            $this->jsonLines->enline(json_decode($fedJson, true))
+            $expectedEnlinedJson,
+            $enlinedJson
         );
     }
 
@@ -118,7 +131,7 @@ JSON_LINES;
      */
     public function delineWithFixture()
     {
-        $delinedJson = json_encode(json_decode(file_get_contents(
+        $expectedDelinedJson = json_encode(json_decode(file_get_contents(
             __DIR__ . '/fixtures/winning_hands.json'
         )));
 
@@ -127,7 +140,7 @@ JSON_LINES;
         );
 
         $this->assertEquals(
-            $delinedJson,
+            $expectedDelinedJson,
             $this->jsonLines->deline($fedJsonLines)
         );
     }

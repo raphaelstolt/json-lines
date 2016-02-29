@@ -1,5 +1,8 @@
 # Changelog
 
+#### v0.0.5 `2016-02-29`
+- Avoid broken tests on Windows systems.
+
 #### v0.0.4 `2016-02-28`
 - Changed JSON Lines separator.
 - Introduced guards for invalid JSON lines and non traversable data.
