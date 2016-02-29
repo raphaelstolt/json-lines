@@ -3,7 +3,7 @@ JsonLines
 [![Build Status](https://secure.travis-ci.org/raphaelstolt/json-lines.png)](http://travis-ci.org/raphaelstolt/json-lines)
 ![PHP Version](http://img.shields.io/badge/php-5.5+-ff69b4.svg)
 
-This is a library to `enline` to the [JSON Lines](http://jsonlines.org/) format and to `deline` back from it to JSON.
+This is a library to __enline__ to the [JSON Lines](http://jsonlines.org/) format and to __deline__ back from it to JSON.
 
 #### Installation via Composer
 ``` bash
@@ -11,7 +11,7 @@ $ composer require stolt/json-lines
 ```
 
 #### Usage
-To `enline` a data structure into JSON Lines use the enline method. The current implementation __doesn't__ persist the result into a `.jsonl` file.
+To __enline__ a data structure into JSON Lines use the `enline` method. The current implementation __doesn't__ persist the result into a `.jsonl` file.
 ```php
 $jsonLines = (new JsonLines())->enline([
     ["one" => 1, "two" => 2],
@@ -30,7 +30,7 @@ string(107) "{"one":1,"two":2}
 "
 ```
 
-To `deline` JSON Lines back into JSON use the deline method.
+To __deline__ JSON Lines back into JSON use the `deline` method.
 ```php
 $json = (new JsonLines())->deline('{"one":1,"two":2}
 {"three":3,"four":4,"five":5}
@@ -66,7 +66,7 @@ string(287) "[
 ]"
 ```
 
-To `deline` a complete JSON Lines file back into JSON use the delineFromFile method.
+To __deline__ a complete JSON Lines file back into JSON use the `delineFromFile` method.
 ```php
 $json = (new JsonLines())->delineFromFile('/path/to/enlined.jsonl');
 ```
