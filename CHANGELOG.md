@@ -1,5 +1,9 @@
 # Changelog
 
+#### v0.1.0 `2016-02-29`
+- Implemented `delineFromFile`.
+Closes [#1](https://github.com/raphaelstolt/json-lines/issues/1).
+
 #### v0.0.5 `2016-02-29`
 - Avoid broken tests on Windows systems.
 

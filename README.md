@@ -66,6 +66,11 @@ string(287) "[
 ]"
 ```
 
+To `deline` a complete JSON Lines file back into JSON use the delineFromFile method.
+```php
+$json = (new JsonLines())->delineFromFile('/path/to/enlined.jsonl');
+```
+
 #### Changelog
 Please see [CHANGELOG](CHANGELOG.md) for more information.
 

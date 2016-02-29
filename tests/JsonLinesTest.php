@@ -3,6 +3,7 @@
 namespace Rs\JsonLines\Tests;
 
 use Rs\JsonLines\JsonLines;
+use Rs\JsonLines\Exception\File\NonReadable;
 use Rs\JsonLines\Exception\InvalidJson;
 use Rs\JsonLines\Exception\NonTraversable;
 use PHPUnit_Framework_TestCase as PHPUnit;
@@ -142,6 +143,38 @@ JSON_LINES;
         $this->assertEquals(
             $expectedDelinedJson,
             $this->jsonLines->deline($fedJsonLines)
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function raisesExceptionOnNonReadableJsonLinesFile()
+    {
+        $this->setExpectedException(NonReadable::class);
+
+        $this->jsonLines->delineFromFile('/tmp/no-way.txt');
+    }
+
+    /**
+     * @test
+     */
+    public function delineWithLargeFixture()
+    {
+        $expectedDelinedJson = file_get_contents(
+            __DIR__ . '/fixtures/metadata_catalogue.json'
+        );
+
+        $largeFixtureFile = __DIR__ . '/fixtures/metadata_catalogue.jsonl';
+
+        $delinedJson = $this->jsonLines->delineFromFile($largeFixtureFile);
+
+        $json = json_decode($delinedJson, true);
+
+        $this->assertTrue(count($json) === 7771);
+        $this->assertEquals(
+            $expectedDelinedJson,
+            $delinedJson
         );
     }
 

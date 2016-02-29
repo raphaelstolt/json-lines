@@ -2,6 +2,7 @@
 
 namespace Rs\JsonLines;
 
+use Rs\JsonLines\Exception\File\NonReadable;
 use Rs\JsonLines\Exception\InvalidJson;
 use Rs\JsonLines\Exception\NonTraversable;
 
@@ -92,5 +93,43 @@ class JsonLines
         }
 
         return json_encode($lines);
+    }
+
+    /**
+     * Yields file lines.
+     *
+     * @param  string $file
+     * @return string
+     * @throws NonReadable
+     */
+    protected function getFileLines($file)
+    {
+        if (!$fileHandle = @fopen($file, 'r')) {
+            throw new NonReadable('Non existent or non readable file');
+        }
+
+        while ($line = fgets($fileHandle)) {
+            yield $line;
+        }
+
+        fclose($fileHandle);
+    }
+
+    /**
+     * Delines from a given JSON Lines file into JSON.
+     *
+     * @param  string $jsonLinesFile
+     * @return string
+     * @throws NonReadable
+     */
+    public function delineFromFile($jsonLinesFile)
+    {
+        $jsonLines = [];
+        foreach ($this->getFileLines($jsonLinesFile) as $line) {
+            $this->guardedJsonLine($line);
+            $jsonLines[] = trim($line);
+        }
+
+        return '[' . implode(',', $jsonLines) . ']';
     }
 }
