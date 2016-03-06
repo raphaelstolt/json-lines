@@ -11,10 +11,28 @@ use PHPUnit_Framework_TestCase as PHPUnit;
 class JsonLinesTest extends PHPUnit
 {
     protected $jsonLines;
+    protected $enlinedJsonLinesFile;
+    protected $enlinedJsonLinesFileGzipped;
 
     public function setUp()
     {
         $this->jsonLines = new JsonLines();
+        $this->enlinedJsonLinesFile = __DIR__ . '/out.jsonl';
+        $this->enlinedJsonLinesFileGzipped = __DIR__ . '/out.jsonl.gz';
+    }
+
+    public function tearDown()
+    {
+        $tearDownFiles = [
+            $this->enlinedJsonLinesFile,
+            $this->enlinedJsonLinesFileGzipped,
+        ];
+
+        foreach ($tearDownFiles as $tearDownFile) {
+            if (file_exists($tearDownFile)) {
+                unlink($tearDownFile);
+            }
+        }
     }
 
     /**
@@ -175,6 +193,60 @@ JSON_LINES;
         $this->assertEquals(
             $expectedDelinedJson,
             $delinedJson
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function enlineToFile()
+    {
+        $data = [
+            ["one" => 1, "two" => 2],
+            ["three" => 3, "four" => 4, "five" => 5],
+            ["six" => 6, "seven" => 7, "key" => "value"],
+            ["nested" => ["a", "b", "c"]],
+        ];
+
+        $expectedJsonLineFile = __DIR__
+            . '/fixtures/expected_enline_to_file.jsonl';
+
+        $this->jsonLines->enlineToFile(
+            $data,
+            $this->enlinedJsonLinesFile
+        );
+
+        $this->assertFileExists($this->enlinedJsonLinesFile);
+        $this->assertFileEquals(
+            $expectedJsonLineFile,
+            $this->enlinedJsonLinesFile
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function enlineToGzippedFile()
+    {
+        $data = [
+            ["one" => 1, "two" => 2],
+            ["three" => 3, "four" => 4, "five" => 5],
+            ["six" => 6, "seven" => 7, "key" => "value"],
+            ["nested" => ["a", "b", "c"]],
+        ];
+
+        $expectedGzippedJsonLineFile = __DIR__
+            . '/fixtures/expected_enline_to_file.jsonl.gz';
+
+        $this->jsonLines->enlineToFile(
+            $data,
+            $this->enlinedJsonLinesFileGzipped
+        );
+
+        $this->assertFileExists($this->enlinedJsonLinesFileGzipped);
+        $this->assertFileEquals(
+            $expectedGzippedJsonLineFile,
+            $this->enlinedJsonLinesFileGzipped
         );
     }
 

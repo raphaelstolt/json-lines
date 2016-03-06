@@ -3,6 +3,7 @@
 namespace Rs\JsonLines;
 
 use Rs\JsonLines\Exception\File\NonReadable;
+use Rs\JsonLines\Exception\File\NonWriteable;
 use Rs\JsonLines\Exception\InvalidJson;
 use Rs\JsonLines\Exception\NonTraversable;
 
@@ -71,6 +72,37 @@ class JsonLines
 
         return implode(self::LINE_SEPARATOR, $lines)
             . self::LINE_SEPARATOR;
+    }
+
+    /**
+     * Enlines a given data structure into a JSON Lines file.
+     *
+     * @param  mixed  $data Data to enline as JSON Lines
+     * @param  string $file Path of the file to enline to. Adding the `gz`
+     *                      extension will gzip compress the JSON Lines.
+     * @return void
+     * @throws NonTraversable
+     * @throws InvalidJson
+     */
+    public function enlineToFile($data, $file)
+    {
+        if (!$fileHandle = @fopen($file, 'w')) {
+            throw new NonWriteable('Non writeable file');
+        }
+
+        $ext = pathinfo($file, PATHINFO_EXTENSION);
+
+        foreach ($data as $line) {
+            self::guardedJsonLine($line);
+            $jsonLine = json_encode($line, JSON_UNESCAPED_UNICODE)
+                . self::LINE_SEPARATOR;
+            if ($ext === 'gz') {
+                $jsonLine = gzencode($jsonLine);
+            }
+            fputs($fileHandle, $jsonLine);
+        }
+
+        fclose($fileHandle);
     }
 
     /**

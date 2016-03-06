@@ -12,7 +12,7 @@ $ composer require stolt/json-lines
 ```
 
 #### Usage
-To __enline__ a data structure into JSON Lines use the `enline` method. The current implementation __doesn't__ persist the result into a `.jsonl` file.
+To __enline__ a data structure into JSON Lines use the `enline` method.
 ```php
 $jsonLines = (new JsonLines())->enline([
     ["one" => 1, "two" => 2],
@@ -29,6 +29,16 @@ string(107) "{"one":1,"two":2}
 {"six":6,"seven":7,"key":"value"}
 {"nested":["a","b","c"]}
 "
+```
+To __enline__ a data structure into a JSON Lines file use the `enlineToFile` method, adding the `gz` extension will gzip compress the JSON Lines as shown next.
+```php
+(new JsonLines())->enlineToFile([
+    ["one" => 1, "two" => 2],
+    ["three" => 3, "four" => 4, "five" => 5],
+    ["six" => 6, "seven" => 7, "key" => "value"],
+    ["nested" => ["a", "b", "c"]],
+    'out.jsonl.gz'
+]);
 ```
 
 To __deline__ JSON Lines back into JSON use the `deline` method.

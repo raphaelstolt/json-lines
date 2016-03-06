@@ -1,5 +1,9 @@
 # Changelog
 
+#### v0.2.0 `2016-03-06`
+- Implemented `enlineToFile`.
+Closes [#2](https://github.com/raphaelstolt/json-lines/issues/2).
+
 #### v0.1.0 `2016-02-29`
 - Implemented `delineFromFile`.
 Closes [#1](https://github.com/raphaelstolt/json-lines/issues/1).
