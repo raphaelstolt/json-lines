@@ -85,7 +85,7 @@ $json = (new JsonLines())->delineFromFile('/path/to/enlined.jsonl');
 #### Changelog
 Please see [CHANGELOG](CHANGELOG.md) for more information.
 
-#### Running Tests
+#### Running tests
 ``` bash
 $ composer test
 ```
