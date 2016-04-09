@@ -82,16 +82,16 @@ To __deline__ a complete JSON Lines file back into JSON use the `delineFromFile`
 $json = (new JsonLines())->delineFromFile('/path/to/enlined.jsonl');
 ```
 
-#### Changelog
-Please see [CHANGELOG](CHANGELOG.md) for more information.
-
 #### Running tests
 ``` bash
 $ composer test
 ```
 
-#### Contributing
-Please see [CONTRIBUTING](CONTRIBUTING.md) for more details.
-
 #### License
 This library is licensed under the MIT license. Please see [LICENSE](LICENSE.md) for more information.
+
+#### Changelog
+Please see [CHANGELOG](CHANGELOG.md) for more information.
+
+#### Contributing
+Please see [CONTRIBUTING](CONTRIBUTING.md) for more details.
