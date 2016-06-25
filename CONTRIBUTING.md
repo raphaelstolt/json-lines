@@ -7,3 +7,5 @@ Thanks for considering to contribute to JsonLines! Just follow these single guid
     - Please follow the used commit message format, which is `<commit-message>.( Fixes | Closes #<issue-number>.)`.
 
 - All features or bugfixes must have an associated issue for discussion. If you want to work on a issue that is already created, please leave a comment on it indicating that you are working on it.
+
+- You must use [feature / topic branches](https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows) to ease the merge of contributions.
