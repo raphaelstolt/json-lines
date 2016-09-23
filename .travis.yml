@@ -13,6 +13,9 @@ matrix:
     - php: nightly
     - php: hhvm
 
+notifications:
+  email: false
+
 before_script:
   - if [[ $TRAVIS_PHP_VERSION != hhvm && $TRAVIS_PHP_VERSION != nightly ]]; then phpenv config-rm xdebug.ini; fi
   - travis_retry composer self-update
