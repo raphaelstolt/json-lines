@@ -1,12 +1,13 @@
 # Changelog
 
+#### v1.0.0 `2016-09-23`
+- Stable release.
+
 #### v0.2.0 `2016-03-06`
-- Implemented `enlineToFile`.
-Closes [#2](https://github.com/raphaelstolt/json-lines/issues/2).
+- Implemented `enlineToFile`. Closes [#2](https://github.com/raphaelstolt/json-lines/issues/2).
 
 #### v0.1.0 `2016-02-29`
-- Implemented `delineFromFile`.
-Closes [#1](https://github.com/raphaelstolt/json-lines/issues/1).
+- Implemented `delineFromFile`. Closes [#1](https://github.com/raphaelstolt/json-lines/issues/1).
 
 #### v0.0.5 `2016-02-29`
 - Avoid broken tests on Windows systems.
