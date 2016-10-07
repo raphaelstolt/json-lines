@@ -30,6 +30,9 @@
         }
     },
     "minimum-stability": "stable",
+    "config": {
+        "sort-packages": true
+    },
     "scripts": {
         "test": "phpunit",
         "cs-fix": "php-cs-fixer fix . -vv || true"
