@@ -1,5 +1,8 @@
 # Changelog
 
+#### v2.0.0 `2016-10-07`
+- Dropped PHP 5.5 support.
+
 #### v1.0.0 `2016-09-23`
 - Stable release.
 
