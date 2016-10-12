@@ -1,16 +1,32 @@
 language: php
 
-php:
-  - hhvm
-  - nightly
-  - 7
-  - 5.6
+env:
+  global:
+    - DISABLE_XDEBUG=true
+    - VALIDATE_GITATTRIBUTES=false
+
+git:
+  depth: 2
 
 cache:
   directories:
     - $HOME/.composer/cache
 
 matrix:
+  include:
+    - php: hhvm
+      env:
+      - DISABLE_XDEBUG=false
+    - php: nightly
+      env:
+      - DISABLE_XDEBUG=false
+    - php: 7.1
+      env:
+      - DISABLE_XDEBUG=false
+      - VALIDATE_GITATTRIBUTES=true
+    - php: 7.0
+    - php: 5.6
+
   fast_finish: true
   allow_failures:
     - php: nightly
@@ -20,10 +36,14 @@ notifications:
   email: false
 
 before_script:
-  - if [[ $TRAVIS_PHP_VERSION != hhvm && $TRAVIS_PHP_VERSION != nightly ]]; then phpenv config-rm xdebug.ini; fi
+  - if [[ $DISABLE_XDEBUG = true ]]; then
+      phpenv config-rm xdebug.ini;
+    fi
   - travis_retry composer self-update
   - travis_retry composer install --prefer-dist --no-interaction
 
 script:
-  - composer gitattributes-validation
+  - if [[ $VALIDATE_GITATTRIBUTES = true ]]; then
+      composer gitattributes-validation;
+    fi
   - composer test
