@@ -1,6 +1,6 @@
 {
     "name": "stolt/json-lines",
-    "description": "Library for the JSON Lines text file format",
+    "description": "Library for the JSON Lines text file format.",
     "keywords": ["jsonlines", "json"],
     "license": "MIT",
     "authors": [
