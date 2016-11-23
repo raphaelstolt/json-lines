@@ -2,7 +2,7 @@ JsonLines
 ================
 [![Build Status](https://secure.travis-ci.org/raphaelstolt/json-lines.png)](http://travis-ci.org/raphaelstolt/json-lines)
 [![Version](http://img.shields.io/packagist/v/stolt/json-lines.svg?style=flat)](https://packagist.org/packages/stolt/json-lines)
-![PHP Version](http://img.shields.io/badge/php-5.5+-ff69b4.svg)
+![PHP Version](http://img.shields.io/badge/php-5.6+-ff69b4.svg)
 
 This is a library to __enline__ to the [JSON Lines](http://jsonlines.org/) format and to __deline__ back from it to JSON.
 
