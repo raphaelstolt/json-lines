@@ -35,8 +35,8 @@ class JsonLines
      * its decode value.
      *
      * @param  mixed $line
-     * @return \stdClass
      * @throws InvalidJson
+     * @return \stdClass
      */
     protected function guardedJsonLine($line)
     {
@@ -54,9 +54,9 @@ class JsonLines
      * Enlines a given data structure into JSON Lines.
      *
      * @param  mixed $data Data to enline as JSON Lines
-     * @return string
      * @throws NonTraversable
      * @throws InvalidJson
+     * @return string
      */
     public function enline($data)
     {
@@ -80,9 +80,9 @@ class JsonLines
      * @param  mixed  $data Data to enline as JSON Lines
      * @param  string $file Path of the file to enline to. Adding the `gz`
      *                      extension will gzip compress the JSON Lines.
-     * @return void
      * @throws NonTraversable
      * @throws InvalidJson
+     * @return void
      */
     public function enlineToFile($data, $file)
     {
@@ -109,8 +109,8 @@ class JsonLines
      * Delines given JSON Lines into JSON.
      *
      * @param  string $jsonLines JSON Lines to deline into JSON
-     * @return string
      * @throws InvalidJson
+     * @return string
      */
     public function deline($jsonLines)
     {
@@ -131,8 +131,8 @@ class JsonLines
      * Yields file lines.
      *
      * @param  string $file
-     * @return string
      * @throws NonReadable
+     * @return string
      */
     protected function getFileLines($file)
     {
@@ -151,8 +151,8 @@ class JsonLines
      * Delines from a given JSON Lines file into JSON.
      *
      * @param  string $jsonLinesFile
-     * @return string
      * @throws NonReadable
+     * @return string
      */
     public function delineFromFile($jsonLinesFile)
     {

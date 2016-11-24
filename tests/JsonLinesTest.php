@@ -2,11 +2,11 @@
 
 namespace Rs\JsonLines\Tests;
 
-use Rs\JsonLines\JsonLines;
+use PHPUnit_Framework_TestCase as PHPUnit;
 use Rs\JsonLines\Exception\File\NonReadable;
 use Rs\JsonLines\Exception\InvalidJson;
 use Rs\JsonLines\Exception\NonTraversable;
-use PHPUnit_Framework_TestCase as PHPUnit;
+use Rs\JsonLines\JsonLines;
 
 class JsonLinesTest extends PHPUnit
 {
