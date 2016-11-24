@@ -8,6 +8,6 @@ Thanks for considering to contribute to `JsonLines`. Please follow these simple 
 
 - All commit messages __MUST__ follow the following format `<Commit-message-in-past-tense>.( Fixes | Closes #<issue-number>.)`.
 
-- All features or bugfixes __MUST__ have an associated issue for discussion. If you want to work on a issue that is already created, please leave a comment on it indicating that you are working on it.
+- All features or bugfixes __MUST__ have an associated issue for discussion. If you want to work on an issue that is already created, please leave a comment on it indicating that you are working on it.
 
 - All upstreamed contributions __MUST__ use [feature / topic branches](https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows) to ease merging.
