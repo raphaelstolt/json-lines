@@ -4,7 +4,7 @@ Thanks for considering to contribute to `JsonLines`. Please follow these simple 
 
 - All code __MUST__ follow the PSR-2 coding standard. Please see [PSR-2](http://www.php-fig.org/psr/psr-2/) for more details.
 
-- Coding standard compliance __MUST__ be ensured before committing or opening pull requests by running `composer cs-fix` in the root directory of this repository.
+- Coding standard compliance __MUST__ be ensured before committing or opening pull requests by running `composer cs-fix` or or `composer cs-lint` in the root directory of this repository.
 
 - All commit messages __MUST__ follow the following format `<Commit-message-in-past-tense>.( Fixes | Closes #<issue-number>.)`.
 

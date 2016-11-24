@@ -1,9 +1,20 @@
 <?php
 
-$finder = Symfony\CS\Finder\DefaultFinder::create()
+$finder = PhpCsFixer\Finder::create()
     ->in(__DIR__);
 
-return Symfony\CS\Config\Config::create()
-    ->level(Symfony\CS\FixerInterface::PSR2_LEVEL)
-    ->fixers(array('-psr0'))
-    ->finder($finder);
+$rules = [
+    'psr0' => false,
+    '@PSR2' => true,
+    'short_array_syntax' => true,
+    'phpdoc_order' => true,
+    'ordered_imports' => true,
+];
+
+$cacheDir = getenv('TRAVIS') ? getenv('HOME') . '/.php-cs-fixer' : __DIR__;
+
+return PhpCsFixer\Config::create()
+    ->setRules($rules)
+    ->finder($finder)
+    ->setUsingCache(true)
+    ->setCacheFile($cacheDir . '/.php_cs.cache');

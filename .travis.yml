@@ -18,7 +18,9 @@ matrix:
     - php: nightly
     - php: 7.1
       env:
-      - VALIDATE_GITATTRIBUTES=true
+        - LINT=true
+      env:
+        - VALIDATE_GITATTRIBUTES=true
     - php: 7.0
     - php: 5.6
 
@@ -38,5 +40,8 @@ before_script:
 script:
   - if [[ $VALIDATE_GITATTRIBUTES = true ]]; then
       composer gitattributes-validation;
+    fi
+  - if [[ $LINT = true ]]; then
+      composer cs-lint;
     fi
   - composer test

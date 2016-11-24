@@ -3,3 +3,4 @@
 phpunit.xml
 composer.lock
 generate_test_json_lines.php
+.php_cs.cache
