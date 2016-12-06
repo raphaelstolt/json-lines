@@ -1,9 +1,5 @@
 language: php
 
-env:
-  global:
-    - DISABLE_XDEBUG=true
-    - VALIDATE_GITATTRIBUTES=false
 
 git:
   depth: 2
