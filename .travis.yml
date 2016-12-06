@@ -11,6 +11,7 @@ git:
 cache:
   directories:
     - $HOME/.composer/cache
+    - $HOME/.php-cs-fixer
 
 matrix:
   include:
