@@ -20,10 +20,7 @@ matrix:
       group: edge
     - php: nightly
     - php: 7.1
-      env:
-        - LINT=true
-      env:
-        - VALIDATE_GITATTRIBUTES=true
+      env: LINT=true VALIDATE_GITATTRIBUTES=true
     - php: 7.0
     - php: 5.6
 
