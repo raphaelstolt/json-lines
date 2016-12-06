@@ -1,6 +1,9 @@
 <?php
 
-$finder = PhpCsFixer\Finder::create()
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
+
+$finder = Finder::create()
     ->in(__DIR__);
 
 $rules = [
@@ -13,7 +16,7 @@ $rules = [
 
 $cacheDir = getenv('TRAVIS') ? getenv('HOME') . '/.php-cs-fixer' : __DIR__;
 
-return PhpCsFixer\Config::create()
+return Config::create()
     ->setRules($rules)
     ->setFinder($finder)
     ->setCacheFile($cacheDir . '/.php_cs.cache');
