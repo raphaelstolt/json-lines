@@ -164,4 +164,21 @@ class JsonLines
 
         return '[' . implode(',', $jsonLines) . ']';
     }
+    
+    /**
+     * Delines the next given JSON Lines file into JSON.
+     *
+     * @param  string $jsonLinesFile
+     * @throws NonReadable
+     * @return string
+     */
+    public function delineEachLineFromFile($jsonLinesFile)
+    {
+        $jsonLines = [];
+        foreach ($this->getFileLines($jsonLinesFile) as $line) {
+            $this->guardedJsonLine($line);
+            yield trim($line);
+        }
+
+    }
 }
