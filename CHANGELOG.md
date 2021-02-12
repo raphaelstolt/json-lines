@@ -4,7 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-- Implemented  `delineEachLineFromFile`.
+
+## [v2.1.0] - 2021-02-12
+### Added
+- Implemented  `delineEachLineFromFile`. Pulls [#4](https://github.com/raphaelstolt/json-lines/pull/4).
 
 ## [v2.0.0] - 2016-10-07
 ### Removed
@@ -43,7 +46,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## v0.0.1 - 2016-02-25
 - First rough initial release.
 
-[Unreleased]: https://github.com/raphaelstolt/json-lines/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/raphaelstolt/json-lines/compare/v2.1.0...HEAD
+[v2.1.0]: https://github.com/raphaelstolt/json-lines/compare/v2.0.0...v2.1.0
 [v2.0.0]: https://github.com/raphaelstolt/json-lines/compare/v1.0.0...v2.0.0
 [v1.0.0]: https://github.com/raphaelstolt/json-lines/compare/v0.2.0...v1.0.0
 [v0.2.0]: https://github.com/raphaelstolt/json-lines/compare/v0.1.0...v0.2.0
