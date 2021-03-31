@@ -164,7 +164,7 @@ class JsonLines
 
         return '[' . implode(',', $jsonLines) . ']';
     }
-    
+
     /**
      * Delines the next given JSON Lines file into JSON.
      *
@@ -179,6 +179,5 @@ class JsonLines
             $this->guardedJsonLine($line);
             yield trim($line);
         }
-
     }
 }
