@@ -82,12 +82,13 @@ To __deline__ a complete JSON Lines file back into JSON use the `delineFromFile`
 $json = (new JsonLines())->delineFromFile('/path/to/enlined.jsonl');
 ```
 
-To __deline__ a complete JSON Lines file line-by-line, use the `delineEachLineFromFile` method.
+To __deline__ a complete JSON Lines file line-by-line, use the `delineEachLineFromFile` method. This allows to iterate over a large file without storing the entire delined file in memory.
 ```php
 $json_lines = (new JsonLines())->delineEachLineFromFile('/path/to/enlined.jsonl');
-foreach($json_lines as $json_line) var_dump($json_line);
+foreach ($json_lines as $json_line) {
+    var_dump($json_line);
+}
 ```
-This allows large file to be iterated over without storing the entire delined file in memory.
 
 #### Running tests
 ``` bash
