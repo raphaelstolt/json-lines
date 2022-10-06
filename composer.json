@@ -13,9 +13,8 @@
         "php": ">=5.6"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.0",
-        "phpunit/phpunit": "4.8.*",
-        "stolt/lean-package-validator": "^1.5"
+        "phpunit/phpunit": "8.*",
+        "friendsofphp/php-cs-fixer": "^3.0"
     },
     "suggest": {
         "ext-zlib": "Allow gzip compression of JSON Lines when writing to a file"
@@ -37,7 +36,6 @@
     "scripts": {
         "test": "phpunit",
         "cs-fix": "php-cs-fixer fix . -vv || true",
-        "cs-lint": "php-cs-fixer fix --diff --verbose --dry-run",
-        "gitattributes-validation": "lean-package-validator validate --enforce-strict-order"
+        "cs-lint": "php-cs-fixer fix --diff --verbose --dry-run"
     }
 }

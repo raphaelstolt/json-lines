@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [v3.0.0] - 2022-10-04
+### Removed
+- Dropped support for unsupported PHP versions
+
 ## [v2.1.0] - 2021-02-12
 ### Added
 - Implemented  `delineEachLineFromFile`. Pulls [#4](https://github.com/raphaelstolt/json-lines/pull/4).
