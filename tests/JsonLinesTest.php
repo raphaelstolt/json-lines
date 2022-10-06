@@ -2,7 +2,7 @@
 
 namespace Rs\JsonLines\Tests;
 
-use PHPUnit_Framework_TestCase as PHPUnit;
+use PHPUnit\Framework\TestCase as PHPUnit;
 use Rs\JsonLines\Exception\File\NonReadable;
 use Rs\JsonLines\Exception\InvalidJson;
 use Rs\JsonLines\Exception\NonTraversable;
@@ -14,14 +14,14 @@ class JsonLinesTest extends PHPUnit
     protected $enlinedJsonLinesFile;
     protected $enlinedJsonLinesFileGzipped;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->jsonLines = new JsonLines();
         $this->enlinedJsonLinesFile = __DIR__ . '/out.jsonl';
         $this->enlinedJsonLinesFileGzipped = __DIR__ . '/out.jsonl.gz';
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $tearDownFiles = [
             $this->enlinedJsonLinesFile,
@@ -99,7 +99,7 @@ class JsonLinesTest extends PHPUnit
      */
     public function raisesExceptionOnNonTraversableData($data)
     {
-        $this->setExpectedException(NonTraversable::class);
+        $this->expectException(NonTraversable::class);
 
         $this->jsonLines->enline($data);
     }
@@ -109,7 +109,7 @@ class JsonLinesTest extends PHPUnit
      */
     public function raisesExceptionOnInvalidJson()
     {
-        $this->setExpectedException(InvalidJson::class);
+        $this->expectException(InvalidJson::class);
 
         $invalidJson = '{"invalid"_,"14": 15}';
         $this->jsonLines->enline(["foo" => $invalidJson]);
@@ -169,7 +169,7 @@ JSON_LINES;
      */
     public function raisesExceptionOnNonReadableJsonLinesFile()
     {
-        $this->setExpectedException(NonReadable::class);
+        $this->expectException(NonReadable::class);
 
         $this->jsonLines->delineFromFile('/tmp/no-way.txt');
     }
