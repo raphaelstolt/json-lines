@@ -2,7 +2,7 @@ JsonLines
 ================
 ![Test](https://github.com/raphaelstolt/json-lines/workflows/Test/badge.svg)
 [![Version](http://img.shields.io/packagist/v/stolt/json-lines.svg?style=flat)](https://packagist.org/packages/stolt/json-lines)
-![PHP Version](http://img.shields.io/badge/php-7.4+-ff69b4.svg)
+![PHP Version](http://img.shields.io/badge/php-8.0+-ff69b4.svg)
 
 This is a library to __enline__ to the [JSON Lines](http://jsonlines.org/) format and to __deline__ back from it to JSON.
 

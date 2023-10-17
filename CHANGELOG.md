@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [v4.0.0] - 2023-10-17
+### Added
+- Reduced opcode conversions
+
+### Removed
+- Dropped support for unsupported PHP versions
+
 ## [v3.0.0] - 2022-10-04
 ### Removed
 - Dropped support for unsupported PHP versions
@@ -50,7 +57,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## v0.0.1 - 2016-02-25
 - First rough initial release.
 
-[Unreleased]: https://github.com/raphaelstolt/json-lines/compare/v3.0.0...HEAD
+[Unreleased]: https://github.com/raphaelstolt/json-lines/compare/v4.0.0...HEAD
+[v3.0.0]: https://github.com/raphaelstolt/json-lines/compare/v3.0.0...v4.0.0
 [v3.0.0]: https://github.com/raphaelstolt/json-lines/compare/v2.1.0...v3.0.0
 [v2.1.0]: https://github.com/raphaelstolt/json-lines/compare/v2.0.0...v2.1.0
 [v2.0.0]: https://github.com/raphaelstolt/json-lines/compare/v1.0.0...v2.0.0

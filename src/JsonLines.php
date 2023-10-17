@@ -19,11 +19,11 @@ class JsonLines
      */
     protected function isTraversable($data)
     {
-        if (!is_array($data) && !$data instanceof Traversable) {
+        if (!\is_array($data) && !$data instanceof Traversable) {
             return false;
         }
 
-        if (is_array($data) && count($data) === 0) {
+        if (\is_array($data) && \count($data) === 0) {
             return false;
         }
 
@@ -40,9 +40,9 @@ class JsonLines
      */
     protected function guardedJsonLine($line)
     {
-        if (is_string($line)) {
-            $guardedJsonLine = json_decode($line);
-            if (json_last_error() !== JSON_ERROR_NONE) {
+        if (\is_string($line)) {
+            $guardedJsonLine = \json_decode($line);
+            if (\json_last_error() !== JSON_ERROR_NONE) {
                 throw new InvalidJson('Invalid Json line detected');
             }
 
@@ -67,10 +67,10 @@ class JsonLines
         $lines = [];
         foreach ($data as $line) {
             self::guardedJsonLine($line);
-            $lines[] = json_encode($line, JSON_UNESCAPED_UNICODE);
+            $lines[] = \json_encode($line, JSON_UNESCAPED_UNICODE);
         }
 
-        return implode(self::LINE_SEPARATOR, $lines)
+        return \implode(self::LINE_SEPARATOR, $lines)
             . self::LINE_SEPARATOR;
     }
 
@@ -86,23 +86,23 @@ class JsonLines
      */
     public function enlineToFile($data, $file)
     {
-        if (!$fileHandle = @fopen($file, 'w')) {
+        if (!$fileHandle = @\fopen($file, 'w')) {
             throw new NonWriteable('Non writeable file');
         }
 
-        $ext = pathinfo($file, PATHINFO_EXTENSION);
+        $ext = \pathinfo($file, PATHINFO_EXTENSION);
 
         foreach ($data as $line) {
             self::guardedJsonLine($line);
-            $jsonLine = json_encode($line, JSON_UNESCAPED_UNICODE)
+            $jsonLine = \json_encode($line, JSON_UNESCAPED_UNICODE)
                 . self::LINE_SEPARATOR;
             if ($ext === 'gz') {
-                $jsonLine = gzencode($jsonLine);
+                $jsonLine = \gzencode($jsonLine);
             }
-            fputs($fileHandle, $jsonLine);
+            \fputs($fileHandle, $jsonLine);
         }
 
-        fclose($fileHandle);
+        \fclose($fileHandle);
     }
 
     /**
@@ -115,16 +115,16 @@ class JsonLines
     public function deline($jsonLines)
     {
         if (empty($jsonLines)) {
-            return json_encode([]);
+            return \json_encode([]);
         }
         $lines = [];
-        $jsonLines = explode(self::LINE_SEPARATOR, trim($jsonLines));
+        $jsonLines = \explode(self::LINE_SEPARATOR, \trim($jsonLines));
 
         foreach ($jsonLines as $line) {
             $lines[] = self::guardedJsonLine($line);
         }
 
-        return json_encode($lines);
+        return \json_encode($lines);
     }
 
     /**
@@ -136,15 +136,15 @@ class JsonLines
      */
     protected function getFileLines($file)
     {
-        if (!$fileHandle = @fopen($file, 'r')) {
+        if (!$fileHandle = @\fopen($file, 'r')) {
             throw new NonReadable('Non existent or non readable file');
         }
 
-        while ($line = fgets($fileHandle)) {
+        while ($line = \fgets($fileHandle)) {
             yield $line;
         }
 
-        fclose($fileHandle);
+        \fclose($fileHandle);
     }
 
     /**
@@ -159,10 +159,10 @@ class JsonLines
         $jsonLines = [];
         foreach ($this->getFileLines($jsonLinesFile) as $line) {
             $this->guardedJsonLine($line);
-            $jsonLines[] = trim($line);
+            $jsonLines[] = \trim($line);
         }
 
-        return '[' . implode(',', $jsonLines) . ']';
+        return '[' . \implode(',', $jsonLines) . ']';
     }
 
     /**
@@ -177,7 +177,7 @@ class JsonLines
         $jsonLines = [];
         foreach ($this->getFileLines($jsonLinesFile) as $line) {
             $this->guardedJsonLine($line);
-            yield trim($line);
+            yield \trim($line);
         }
     }
 }

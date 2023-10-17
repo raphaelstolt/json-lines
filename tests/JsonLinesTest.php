@@ -29,8 +29,8 @@ class JsonLinesTest extends PHPUnit
         ];
 
         foreach ($tearDownFiles as $tearDownFile) {
-            if (file_exists($tearDownFile)) {
-                unlink($tearDownFile);
+            if (\file_exists($tearDownFile)) {
+                \unlink($tearDownFile);
             }
         }
     }
@@ -41,7 +41,7 @@ class JsonLinesTest extends PHPUnit
      */
     private function replaceNewlines($content)
     {
-        return preg_replace('~\R~', '\n', $content);
+        return \preg_replace('~\R~', '\n', $content);
     }
 
     /**
@@ -56,7 +56,7 @@ class JsonLinesTest extends PHPUnit
             '{"nested":["a","b","c"]}',
             '{"newlined-content":"\ntest-content"}',
         ];
-        $expectedLines = join(
+        $expectedLines = \join(
             JsonLines::LINE_SEPARATOR,
             $expectedLines
         ) . JsonLines::LINE_SEPARATOR;
@@ -77,14 +77,14 @@ class JsonLinesTest extends PHPUnit
      */
     public function enlineWithFixture()
     {
-        $fedJson = file_get_contents(
+        $fedJson = \file_get_contents(
             __DIR__ . '/fixtures/winning_hands.json'
         );
-        $expectedEnlinedJson = $this->replaceNewlines(file_get_contents(
+        $expectedEnlinedJson = $this->replaceNewlines(\file_get_contents(
             __DIR__ . '/fixtures/winning_hands.jsonl'
         ));
         $enlinedJson = $this->replaceNewlines(
-            $this->jsonLines->enline(json_decode($fedJson, true))
+            $this->jsonLines->enline(\json_decode($fedJson, true))
         );
 
         $this->assertSame(
@@ -120,7 +120,7 @@ class JsonLinesTest extends PHPUnit
      */
     public function deline()
     {
-        $expectedJson = json_encode([
+        $expectedJson = \json_encode([
             ["one" => 1, "two" => 2],
             ["three" => 3, "four" => 4, "five" => 5],
             ["six" => 6, "seven" => 7, "key" => "value"],
@@ -150,11 +150,11 @@ JSON_LINES;
      */
     public function delineWithFixture()
     {
-        $expectedDelinedJson = json_encode(json_decode(file_get_contents(
+        $expectedDelinedJson = \json_encode(\json_decode(\file_get_contents(
             __DIR__ . '/fixtures/winning_hands.json'
         )));
 
-        $fedJsonLines = file_get_contents(
+        $fedJsonLines = \file_get_contents(
             __DIR__ . '/fixtures/winning_hands.jsonl'
         );
 
@@ -179,7 +179,7 @@ JSON_LINES;
      */
     public function delineWithLargeFixture()
     {
-        $expectedDelinedJson = file_get_contents(
+        $expectedDelinedJson = \file_get_contents(
             __DIR__ . '/fixtures/metadata_catalogue.json'
         );
 
@@ -187,9 +187,9 @@ JSON_LINES;
 
         $delinedJson = $this->jsonLines->delineFromFile($largeFixtureFile);
 
-        $json = json_decode($delinedJson, true);
+        $json = \json_decode($delinedJson, true);
 
-        $this->assertTrue(count($json) === 7771);
+        $this->assertTrue(\count($json) === 7771);
         $this->assertEquals(
             $expectedDelinedJson,
             $delinedJson

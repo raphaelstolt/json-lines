@@ -11,13 +11,10 @@ jobs:
             fail-fast: true
             matrix:
                 php:
-                    - "7.4"
-                    - "8.0"
                     - "8.1"
-
         steps:
             -   name: Checkout
-                uses: actions/checkout@v2
+                uses: actions/checkout@v3
 
             -   name: Install PHP
                 uses: shivammathur/setup-php@v2
@@ -29,3 +26,6 @@ jobs:
 
             -   name: Coding styles
                 run: composer run-script cs-lint
+
+            -   name: Validate package leanness
+                run: composer run-script validate-gitattributes
