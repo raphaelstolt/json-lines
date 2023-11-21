@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [v4.0.1] - 2023-11-21
+### Added
+- InvalidJson holds more error information/context 
+
 ## [v4.0.0] - 2023-10-17
 ### Added
 - Reduced opcode conversions

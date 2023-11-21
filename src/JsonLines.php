@@ -43,7 +43,7 @@ class JsonLines
         if (\is_string($line)) {
             $guardedJsonLine = \json_decode($line);
             if (\json_last_error() !== JSON_ERROR_NONE) {
-                throw new InvalidJson('Invalid Json line detected');
+                throw new InvalidJson('Invalid Json line detected', \json_last_error_msg(), $line);
             }
 
             return $guardedJsonLine;

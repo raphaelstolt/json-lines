@@ -109,10 +109,14 @@ class JsonLinesTest extends PHPUnit
      */
     public function raisesExceptionOnInvalidJson()
     {
-        $this->expectException(InvalidJson::class);
-
-        $invalidJson = '{"invalid"_,"14": 15}';
-        $this->jsonLines->enline(["foo" => $invalidJson]);
+        try {
+            $invalidJson = '{"invalid"_,"14": 15}';
+            $this->jsonLines->enline(["foo" => $invalidJson]);
+        } catch (InvalidJson $e) {
+            $this->assertEquals('Invalid Json line detected', $e->getMessage());
+            $this->assertEquals($invalidJson, $e->getInvalidJson());
+            $this->assertEquals('Syntax error', $e->getJsonFunctionErrorMessage());
+        }
     }
 
     /**
