@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rs\JsonLines;
 
 use Rs\JsonLines\Exception\File\NonReadable;
@@ -17,7 +19,7 @@ class JsonLines
      * @param  mixed $data Possibly traversable data
      * @return boolean
      */
-    protected function isTraversable($data)
+    protected function isTraversable($data): bool
     {
         if (!\is_array($data) && !$data instanceof Traversable) {
             return false;
@@ -58,7 +60,7 @@ class JsonLines
      * @throws InvalidJson
      * @return string
      */
-    public function enline($data)
+    public function enline($data): string
     {
         if (!$this->isTraversable($data)) {
             throw new NonTraversable('Require something to travers');
@@ -84,7 +86,7 @@ class JsonLines
      * @throws InvalidJson
      * @return void
      */
-    public function enlineToFile($data, $file)
+    public function enlineToFile($data, $file): void
     {
         if (!$fileHandle = @\fopen($file, 'w')) {
             throw new NonWriteable('Non writeable file');
@@ -112,7 +114,7 @@ class JsonLines
      * @throws InvalidJson
      * @return string
      */
-    public function deline($jsonLines)
+    public function deline($jsonLines): string
     {
         if (empty($jsonLines)) {
             return \json_encode([]);
@@ -154,7 +156,7 @@ class JsonLines
      * @throws NonReadable
      * @return string
      */
-    public function delineFromFile($jsonLinesFile)
+    public function delineFromFile($jsonLinesFile): string
     {
         $jsonLines = [];
         foreach ($this->getFileLines($jsonLinesFile) as $line) {
@@ -174,7 +176,6 @@ class JsonLines
      */
     public function delineEachLineFromFile($jsonLinesFile)
     {
-        $jsonLines = [];
         foreach ($this->getFileLines($jsonLinesFile) as $line) {
             $this->guardedJsonLine($line);
             yield \trim($line);
