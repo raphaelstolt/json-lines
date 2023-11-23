@@ -8,7 +8,7 @@ This is a library to __enline__ to the [JSON Lines](http://jsonlines.org/) forma
 
 #### Installation via Composer
 ``` bash
-$ composer require stolt/json-lines
+composer require stolt/json-lines
 ```
 
 #### Usage
@@ -92,7 +92,7 @@ foreach ($json_lines as $json_line) {
 
 #### Running tests
 ``` bash
-$ composer test
+composer test
 ```
 
 #### License
