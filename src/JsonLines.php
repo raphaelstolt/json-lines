@@ -112,9 +112,9 @@ class JsonLines
      *
      * @param  string $jsonLines JSON Lines to deline into JSON
      * @throws InvalidJson
-     * @return string
+     * @return string|array
      */
-    public function deline($jsonLines): string
+    public function deline($jsonLines, $to_array = false): string|array
     {
         if (empty($jsonLines)) {
             return \json_encode([]);
@@ -126,7 +126,7 @@ class JsonLines
             $lines[] = self::guardedJsonLine($line);
         }
 
-        return \json_encode($lines);
+        return $to_array ? $lines : \json_encode($lines);
     }
 
     /**
