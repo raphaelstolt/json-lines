@@ -2,6 +2,8 @@
 
 namespace Rs\JsonLines\Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase as PHPUnit;
 use Rs\JsonLines\Exception\File\NonReadable;
 use Rs\JsonLines\Exception\InvalidJson;
@@ -10,9 +12,9 @@ use Rs\JsonLines\JsonLines;
 
 class JsonLinesTest extends PHPUnit
 {
-    protected $jsonLines;
-    protected $enlinedJsonLinesFile;
-    protected $enlinedJsonLinesFileGzipped;
+    protected JsonLines $jsonLines;
+    protected string $enlinedJsonLinesFile;
+    protected string $enlinedJsonLinesFileGzipped;
 
     public function setUp(): void
     {
@@ -44,9 +46,7 @@ class JsonLinesTest extends PHPUnit
         return \preg_replace('~\R~', '\n', $content);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enline()
     {
         $expectedLines = [
@@ -72,9 +72,7 @@ class JsonLinesTest extends PHPUnit
         $this->assertSame($expectedLines, $lines);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enlineWithFixture()
     {
         $fedJson = \file_get_contents(
@@ -93,10 +91,8 @@ class JsonLinesTest extends PHPUnit
         );
     }
 
-    /**
-     * @test
-     * @dataProvider nonTraversablesProvider
-     */
+    #[Test]
+    #[DataProvider('nonTraversablesProvider')]
     public function raisesExceptionOnNonTraversableData($data)
     {
         $this->expectException(NonTraversable::class);
@@ -104,9 +100,7 @@ class JsonLinesTest extends PHPUnit
         $this->jsonLines->enline($data);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function raisesExceptionOnInvalidJson()
     {
         try {
@@ -119,9 +113,7 @@ class JsonLinesTest extends PHPUnit
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deline()
     {
         $expectedJson = \json_encode([
@@ -149,9 +141,7 @@ JSON_LINES;
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function delineToArray()
     {
         $expectedArray = [
@@ -175,9 +165,7 @@ JSON_LINES;
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function delineWithFixture()
     {
         $expectedDelinedJson = \json_encode(\json_decode(\file_get_contents(
@@ -194,9 +182,7 @@ JSON_LINES;
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function raisesExceptionOnNonReadableJsonLinesFile()
     {
         $this->expectException(NonReadable::class);
@@ -204,9 +190,7 @@ JSON_LINES;
         $this->jsonLines->delineFromFile('/tmp/no-way.txt');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function delineWithLargeFixture()
     {
         $expectedDelinedJson = \file_get_contents(
@@ -226,9 +210,7 @@ JSON_LINES;
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enlineToFile()
     {
         $data = [
@@ -253,9 +235,7 @@ JSON_LINES;
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enlineToGzippedFile()
     {
         $data = [
@@ -283,7 +263,7 @@ JSON_LINES;
     /**
      * @return array
      */
-    public function nonTraversablesProvider()
+    public static function nonTraversablesProvider()
     {
         return [
             "null_data" => [null],

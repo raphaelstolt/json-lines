@@ -14,7 +14,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
-        "phpunit/phpunit": "8.*",
+        "phpunit/phpunit": "^11.4.4||^10.5.25",
         "stolt/lean-package-validator": "^3.0"
     },
     "suggest": {
