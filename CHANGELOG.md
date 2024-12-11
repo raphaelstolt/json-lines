@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [v4.1.0] - 2024-12-11
+### Added
+- deline can now deline into an array. Pulls [#12](https://github.com/raphaelstolt/json-lines/pull/12).
+
 ## [v4.0.1] - 2023-11-21
 ### Added
 - InvalidJson holds more error information/context 
@@ -61,7 +65,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## v0.0.1 - 2016-02-25
 - First rough initial release.
 
-[Unreleased]: https://github.com/raphaelstolt/json-lines/compare/v4.0.1...HEAD
+[Unreleased]: https://github.com/raphaelstolt/json-lines/compare/v4.1.0...HEAD
+[v4.1.0]: https://github.com/raphaelstolt/json-lines/compare/v4.0.1...v4.1.0
 [v4.0.1]: https://github.com/raphaelstolt/json-lines/compare/v4.0.0...v4.0.1
 [v4.0.0]: https://github.com/raphaelstolt/json-lines/compare/v3.0.0...v4.0.0
 [v3.0.0]: https://github.com/raphaelstolt/json-lines/compare/v2.1.0...v3.0.0
