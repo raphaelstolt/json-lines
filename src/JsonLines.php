@@ -36,14 +36,15 @@ class JsonLines
      * Guards the JSON validity of the given JSON line and returns
      * its decode value.
      *
-     * @param  mixed $line
+     * @param mixed $line
+     * @param bool $asArray
      * @throws InvalidJson
      * @return \stdClass
      */
-    protected function guardedJsonLine($line)
+    protected function guardedJsonLine($line, $asArray = false)
     {
         if (\is_string($line)) {
-            $guardedJsonLine = \json_decode($line);
+            $guardedJsonLine = \json_decode($line, $asArray);
             if (\json_last_error() !== JSON_ERROR_NONE) {
                 throw new InvalidJson('Invalid Json line detected', \json_last_error_msg(), $line);
             }
@@ -108,13 +109,13 @@ class JsonLines
     }
 
     /**
-     * Delines given JSON Lines into JSON.
+     * Delines given JSON Lines into JSON or an array.
      *
-     * @param  string $jsonLines JSON Lines to deline into JSON
+     * @param  string  $jsonLines JSON Lines to deline into JSON
+     * @param  boolean $toArray   Whether to deline into an array or not
      * @throws InvalidJson
-     * @return string
      */
-    public function deline($jsonLines): string
+    public function deline($jsonLines, $toArray = false): string|array
     {
         if (empty($jsonLines)) {
             return \json_encode([]);
@@ -123,10 +124,10 @@ class JsonLines
         $jsonLines = \explode(self::LINE_SEPARATOR, \trim($jsonLines));
 
         foreach ($jsonLines as $line) {
-            $lines[] = self::guardedJsonLine($line);
+            $lines[] = self::guardedJsonLine($line, $toArray);
         }
 
-        return \json_encode($lines);
+        return $toArray ? $lines : \json_encode($lines);
     }
 
     /**
@@ -153,7 +154,7 @@ class JsonLines
      * Delines from a given JSON Lines file into JSON.
      *
      * @param  string $jsonLinesFile
-     * @throws NonReadable
+     * @throws NonReadable|InvalidJson
      * @return string
      */
     public function delineFromFile($jsonLinesFile): string

@@ -152,6 +152,32 @@ JSON_LINES;
     /**
      * @test
      */
+    public function delineToArray()
+    {
+        $expectedArray = [
+            ["one" => 1, "two" => 2],
+            ["three" => 3, "four" => 4, "five" => 5],
+            ["six" => 6, "seven" => 7, "key" => "value"],
+            ["nested" => ["a", "b", "c"]],
+        ];
+
+        $fedJsonLines = <<<JSON_LINES
+{"one":1,"two":2}
+{"three":3,"four":4,"five":5}
+{"six":6,"seven":7,"key":"value"}
+{"nested":["a","b","c"]}
+
+JSON_LINES;
+
+        $this->assertEquals(
+            $expectedArray,
+            $this->jsonLines->deline($fedJsonLines, true)
+        );
+    }
+
+    /**
+     * @test
+     */
     public function delineWithFixture()
     {
         $expectedDelinedJson = \json_encode(\json_decode(\file_get_contents(
